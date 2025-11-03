@@ -7,23 +7,31 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  # Job 1: Rodar testes
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v3
+      - name: Checkout do código
+        uses: actions/checkout@v3
 
-    - name: Configurar Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - name: Instalar dependências
-      run: npm install
+      - name: Instalar dependências
+        run: npm ci
 
-    - name: Executar testes
-      run: npm test
+      - name: Executar testes
+        run: npm test
 
-    - name: Construir imagem Docker
-      run: docker build -t ola-devops .
+  # Job 2: Construir imagem Docker somente se os testes passarem
+  docker:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Construir imagem Docker
+        run: docker build -t ola-devops .
