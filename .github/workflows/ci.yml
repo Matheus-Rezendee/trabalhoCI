@@ -31,7 +31,10 @@ jobs:
         run: npm install
       # 4. Executa os testes
       - name: Rodar Testes
-        run: npm test
+        run: |
+          chmod +x ./node_modules/.bin/jest
+          npm test
+
       # 5. Configura o Docker Buildx (necessário para build)
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3
