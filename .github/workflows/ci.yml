@@ -72,3 +72,6 @@ jobs:
           # Usa as tags geradas pelo 'metadata-action'
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Install dependencies
+        run: npm install
