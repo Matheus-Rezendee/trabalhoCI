@@ -1,4 +1,3 @@
-# .github/workflows/ci.yml
 name: Pipeline de CI/CD - Olá Mundo DevOps
 
 on:
@@ -61,10 +60,11 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-  # 2️⃣ Job de CD (Deploy local usando o runner)
+  # 2️⃣ Job de CD (Deploy local usando o runner self-hosted)
   deploy-to-local:
     needs: test-and-build
     runs-on: self-hosted
+
     steps:
       - name: Checkout do Código
         uses: actions/checkout@v4
