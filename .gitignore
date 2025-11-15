@@ -16,3 +16,4 @@ npm-debug.log
 
 # Arquivos do Sistema Operacional
 Thumbs.db
+/actions-runner
