@@ -53,6 +53,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fazer Deploy com Docker Compose
+        shell: cmd
         run: |
           docker-compose pull
           docker-compose up -d --no-build
