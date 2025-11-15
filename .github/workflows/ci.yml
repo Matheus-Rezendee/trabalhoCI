@@ -97,6 +97,7 @@ jobs:
 
       # 3. Executa o Deploy
       - name: Fazer Deploy com Docker Compose
+        shell: cmd
         run: |
           docker-compose pull
           docker-compose up -d --no-build
